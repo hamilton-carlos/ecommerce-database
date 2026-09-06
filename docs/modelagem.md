@@ -31,3 +31,53 @@ Armazena as informações relacionadas ao pagamento dos pedidos.
 - Uma categoria pode possuir vários produtos.
 - Cada produto pertence a uma categoria.
 - Cada pedido possui um pagamento.
+
+## Estrutura das tabelas
+
+### clientes
+
+- id_cliente
+- nome
+- email
+- telefone
+- data_cadastro
+
+### categorias
+
+- id_categoria
+- nome
+- descricao
+
+### produtos
+
+- id_produto
+- nome
+- descricao
+- preco
+- estoque
+- id_categoria
+
+### pedidos
+
+- id_pedido
+- id_cliente
+- data_pedido
+- status
+- valor_total
+
+### itens_pedido
+
+- id_item
+- id_pedido
+- id_produto
+- quantidade
+- preco_unitario
+
+### pagamentos
+
+- id_pagamento
+- id_pedido
+- forma_pagamento
+- status
+- data_pagamento
+- valor
