@@ -32,3 +32,15 @@ CREATE TABLE pedidos (
     FOREIGN KEY (id_cliente)
         REFERENCES clientes(id_cliente)
 );
+
+CREATE TABLE itens_pedido (
+    id_item SERIAL PRIMARY KEY,
+    id_pedido INTEGER NOT NULL,
+    id_produto INTEGER NOT NULL,
+    quantidade INTEGER NOT NULL,
+    preco_unitario NUMERIC(10,2) NOT NULL,
+    FOREIGN KEY (id_pedido)
+        REFERENCES pedidos(id_pedido),
+    FOREIGN KEY (id_produto)
+        REFERENCES produtos(id_produto)
+);
