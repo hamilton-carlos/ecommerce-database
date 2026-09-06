@@ -44,3 +44,14 @@ CREATE TABLE itens_pedido (
     FOREIGN KEY (id_produto)
         REFERENCES produtos(id_produto)
 );
+
+CREATE TABLE pagamentos (
+    id_pagamento SERIAL PRIMARY KEY,
+    id_pedido INTEGER NOT NULL UNIQUE,
+    forma_pagamento VARCHAR(30) NOT NULL,
+    status VARCHAR(30) NOT NULL DEFAULT 'Pendente',
+    data_pagamento TIMESTAMP,
+    valor NUMERIC(10,2) NOT NULL,
+    FOREIGN KEY (id_pedido)
+        REFERENCES pedidos(id_pedido)
+);
