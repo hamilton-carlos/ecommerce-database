@@ -16,8 +16,8 @@ CREATE TABLE produtos (
     id_produto SERIAL PRIMARY KEY,
     nome VARCHAR(120) NOT NULL,
     descricao VARCHAR(255),
-    preco NUMERIC(10,2) NOT NULL,
-    estoque INTEGER NOT NULL DEFAULT 0,
+    preco NUMERIC(10,2) NOT NULL CHECK (preco >= 0),
+    estoque INTEGER NOT NULL DEFAULT 0 CHECK (estoque >= 0),
     id_categoria INTEGER NOT NULL,
     FOREIGN KEY (id_categoria)
         REFERENCES categorias(id_categoria)
@@ -37,8 +37,8 @@ CREATE TABLE itens_pedido (
     id_item SERIAL PRIMARY KEY,
     id_pedido INTEGER NOT NULL,
     id_produto INTEGER NOT NULL,
-    quantidade INTEGER NOT NULL,
-    preco_unitario NUMERIC(10,2) NOT NULL,
+    quantidade INTEGER NOT NULL CHECK (quantidade > 0),
+    preco_unitario NUMERIC(10,2) NOT NULL CHECK (preco_unitario >= 0),
     FOREIGN KEY (id_pedido)
         REFERENCES pedidos(id_pedido),
     FOREIGN KEY (id_produto)
@@ -51,7 +51,7 @@ CREATE TABLE pagamentos (
     forma_pagamento VARCHAR(30) NOT NULL,
     status VARCHAR(30) NOT NULL DEFAULT 'Pendente',
     data_pagamento TIMESTAMP,
-    valor NUMERIC(10,2) NOT NULL,
+    valor NUMERIC(10,2) NOT NULL CHECK (valor >= 0),
     FOREIGN KEY (id_pedido)
         REFERENCES pedidos(id_pedido)
 );
